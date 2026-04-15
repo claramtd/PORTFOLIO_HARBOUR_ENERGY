@@ -6,7 +6,7 @@
 
 > An interactive static web dashboard presenting the results of operational performance analysis (Production, Safety, and Cost) for Harbour Energy's operations in Indonesia.
 
-**[🖥️ Live Demo](https://claramtd.github.io/PORTFOLIO_HARBOUR_ENERGY/portfolio/)** | **[👷‍♀️ LinkedIn Profile](https://www.linkedin.com/in/claramatondang/)**
+**[🖥️ Live Demo](https://claramtd.github.io/PORTFOLIO_HARBOUR_ENERGY/portfolio/index.html)** | **[👷‍♀️ LinkedIn Profile](https://www.linkedin.com/in/claramatondang/)**
 
 *⚠️ **Disclaimer:** The operational data in this project is synthetically generated (random seed 42) for portfolio case study purposes. The figures are anchored to Harbour Energy plc's public data (LSE filings) but do not represent the company's actual internal data.*
 
