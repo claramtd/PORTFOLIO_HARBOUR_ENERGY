@@ -70,7 +70,7 @@ From the extraction of the 2025 operational data, three strategic initiatives ar
 ## 👷‍♀️ About the Author
 
 > **Clara**
-> *Final-year Geophysical Engineering student & Jr. Geophysicist in Jakarta, Indonesia.*
+> *Final-year Geophysical Engineering student from Pertamina University (Jakarta, Indonesia).*
 
 Hi, I'm Clara\! I'm a final-year Geophysical Engineering student in Jakarta. I combine an analytical mindset with a passion for seismic data processing and energy data analytics. With a background in competitive physics, I excel at complex problem-solving and teamwork. I am currently seeking new opportunities to grow in my field and would love to connect and discuss all things related to geophysics and energy\!
 
