@@ -1,0 +1,96 @@
+IncidentID,Date,Asset,Platform,Department,IncidentType,Severity,InvestigationStatus,DaysToClose,PersonnelInvolved,Description
+INC-1031,2025-04-24,Block A,Alpha,Marine,Equipment Failure,Medium,Completed,28,4,Equipment Failure at Alpha — Marine operations
+INC-1059,2025-06-06,Tuna,Tuna-FPSO,HSE,Near Miss,,Not Required,,3,Near Miss at Tuna-FPSO — HSE operations
+INC-1064,2025-02-26,Block A,Bravo,Drilling,Equipment Failure,Medium,Pending,,4,Equipment Failure at Bravo — Drilling operations
+INC-1019,2025-06-13,Tuna,Tuna-FPSO,Production,First Aid,Low,Not Required,,1,First Aid at Tuna-FPSO — Production operations
+INC-1087,2025-04-15,Block A,Bravo,Drilling,Near Miss,High,Completed,2,2,Near Miss at Bravo — Drilling operations
+INC-1032,2025-12-08,Tuna,Tuna-FPSO,Logistics,Environmental Release,High,In Progress,,4,Environmental Release at Tuna-FPSO — Logistics operations
+INC-1048,2025-02-06,Tuna,Tuna-FPSO,Drilling,Medical Treatment,Medium,Pending,,1,Medical Treatment at Tuna-FPSO — Drilling operations
+INC-1050,2025-07-26,Block A,Bravo,HSE,First Aid,Low,Completed,19,5,First Aid at Bravo — HSE operations
+INC-1081,2025-04-25,Tuna,Tuna-FPSO,Marine,Medical Treatment,Medium,In Progress,,1,Medical Treatment at Tuna-FPSO — Marine operations
+INC-1003,2025-10-22,Block A,Bravo,Drilling,First Aid,Low,Completed,28,2,First Aid at Bravo — Drilling operations
+INC-1018,2025-03-19,Tuna,Tuna-FPSO,Production,First Aid,Low,Not Required,,2,First Aid at Tuna-FPSO — Production operations
+INC-1049,2025-03-18,Andaman II,Andaman-Rig,Marine,Near Miss,Low,Not Required,,5,Near Miss at Andaman-Rig — Marine operations
+INC-1004,2025-01-07,Andaman II,Andaman-Rig,Drilling,First Aid,Low,Not Required,,5,First Aid at Andaman-Rig — Drilling operations
+INC-1066,2025-04-02,Block A,Alpha,HSE,First Aid,Low,Not Required,,2,First Aid at Alpha — HSE operations
+INC-1030,2025-02-20,Block A,Bravo,Production,Near Miss,Low,Not Required,,5,Near Miss at Bravo — Production operations
+INC-1052,2025-04-05,Tuna,Tuna-FPSO,HSE,Near Miss,Low,Not Required,,5,Near Miss at Tuna-FPSO — HSE operations
+INC-1006,2025-10-26,Tuna,Tuna-FPSO,HSE,Near Miss,Low,Completed,10,3,Near Miss at Tuna-FPSO — HSE operations
+INC-1043,2025-09-01,Block A,Alpha,Drilling,Near Miss,Low,Completed,12,1,Near Miss at Alpha — Drilling operations
+INC-1035,2025-11-08,Andaman II,Andaman-Rig,Logistics,Near Miss,Low,Completed,23,2,Near Miss at Andaman-Rig — Logistics operations
+INC-1011,2025-12-03,Andaman II,Andaman-Rig,Logistics,Near Miss,Low,Not Required,,3,Near Miss at Andaman-Rig — Logistics operations
+INC-1054,2025-11-20,Andaman II,Andaman-Rig,Drilling,Restricted Work,Medium,Completed,20,1,Restricted Work at Andaman-Rig — Drilling operations
+INC-1023,2025-01-14,Block A,Bravo,Drilling,Medical Treatment,Medium,In Progress,,2,Medical Treatment at Bravo — Drilling operations
+INC-1079,2025-10-27,Tuna,Tuna-FPSO,Drilling,Near Miss,Low,Completed,2,3,Near Miss at Tuna-FPSO — Drilling operations
+INC-1016,2025-11-27,Andaman II,Andaman-Rig,Drilling,Environmental Release,High,In Progress,,5,Environmental Release at Andaman-Rig — Drilling operations
+INC-1058,2025-09-03,Block A,Alpha,HSE,Near Miss,Low,Not Required,,4,Near Miss at Alpha — HSE operations
+INC-1071,2025-11-05,Tuna,Tuna-FPSO,Marine,Medical Treatment,High,In Progress,,3,Medical Treatment at Tuna-FPSO — Marine operations
+INC-1046,2025-04-19,Block A,Bravo,Maintenance,Medical Treatment,Medium,Completed,2,4,Medical Treatment at Bravo — Maintenance operations
+INC-1042,2025-04-28,Tuna,Tuna-FPSO,HSE,Medical Treatment,Medium,Completed,11,3,Medical Treatment at Tuna-FPSO — HSE operations
+INC-1045,2025-08-08,Block A,Alpha,Logistics,Near Miss,Low,Not Required,,5,Near Miss at Alpha — Logistics operations
+INC-1075,2025-11-25,Block A,Bravo,Production,Lost Time Injury,High,Completed,6,1,Lost Time Injury at Bravo — Production operations
+INC-1033,2025-09-02,Block A,Bravo,Drilling,Near Miss,Low,Completed,7,2,Near Miss at Bravo — Drilling operations
+INC-1067,2025-08-07,Andaman II,Andaman-Rig,Logistics,Near Miss,Low,Not Required,,5,Near Miss at Andaman-Rig — Logistics operations
+INC-1038,2025-02-04,Block A,Alpha,Maintenance,Equipment Failure,Medium,In Progress,,4,Equipment Failure at Alpha — Maintenance operations
+INC-1028,2025-08-29,Andaman II,Andaman-Rig,Production,First Aid,Low,Completed,13,5,First Aid at Andaman-Rig — Production operations
+INC-1080,2025-05-23,Tuna,Tuna-FPSO,Production,Medical Treatment,Medium,Completed,24,5,Medical Treatment at Tuna-FPSO — Production operations
+INC-1065,2025-04-25,Block A,Bravo,Logistics,Near Miss,High,Not Required,,1,Near Miss at Bravo — Logistics operations
+INC-1029,2025-09-12,Block A,Alpha,Drilling,Environmental Release,High,In Progress,,1,Environmental Release at Alpha — Drilling operations
+INC-1078,2025-06-28,Tuna,Tuna-FPSO,Maintenance,Near Miss,Low,Not Required,,4,Near Miss at Tuna-FPSO — Maintenance operations
+INC-1082,2025-03-11,Block A,Bravo,Maintenance,Lost Time Injury,High,In Progress,,3,Lost Time Injury at Bravo — Maintenance operations
+INC-1017,2025-02-02,Andaman II,Andaman-Rig,Marine,Near Miss,Low,Completed,2,1,Near Miss at Andaman-Rig — Marine operations
+INC-1062,2025-01-12,Block A,Alpha,HSE,First Aid,Low,Completed,2,5,First Aid at Alpha — HSE operations
+INC-1065,2025-04-25,Block A,Bravo,Logistics,Near Miss,Low,Not Required,,1,Near Miss at Bravo — Logistics operations
+INC-1053,2025-09-29,Block A,Bravo,,First Aid,Low,Completed,27,2,First Aid at Bravo — Maintenance operations
+INC-1056,2025-04-30,Block A,Alpha,Logistics,Near Miss,Low,Completed,12,1,Near Miss at Alpha — Logistics operations
+INC-1070,2025-04-24,Block A,Alpha,Maintenance,Near Miss,Low,Completed,13,5,Near Miss at Alpha — Maintenance operations
+INC-1076,2025-01-05,Tuna,Tuna-FPSO,Drilling,Process Safety Event,High,Completed,23,2,Process Safety Event at Tuna-FPSO — Drilling operations
+INC-1014,2025-03-17,Block A,Bravo,Drilling,Near Miss,Low,Not Required,,4,Near Miss at Bravo — Drilling operations
+INC-1075,2026-02-05,Block A,Bravo,Production,Lost Time Injury,High,Completed,6,1,Lost Time Injury at Bravo — Production operations
+INC-1039,2025-05-22,Block A,Bravo,Marine,Near Miss,Low,Not Required,,2,Near Miss at Bravo — Marine operations
+INC-1026,2025-09-25,Block A,Bravo,Maintenance,Medical Treatment,Medium,In Progress,,2,Medical Treatment at Bravo — Maintenance operations
+INC-1022,2025-07-13,Block A,Alpha,Logistics,Medical Treatment,Medium,In Progress,,2,Medical Treatment at Alpha — Logistics operations
+INC-1054,2025-11-20,Andaman II,Andaman-Rig,Drilling,Restricted Work,Medium,Completed,20,1,Restricted Work at Andaman-Rig — Drilling operations
+INC-1002,2025-06-06,Tuna,Tuna-FPSO,HSE,First Aid,Low,Completed,11,3,First Aid at Tuna-FPSO — HSE operations
+INC-1061,2025-07-17,Block A,Alpha,Maintenance,Equipment Failure,Medium,In Progress,,1,Equipment Failure at Alpha — Maintenance operations
+INC-1001,2025-04-01,Block A,Alpha,Logistics,Near Miss,Low,Not Required,,5,Near Miss at Alpha — Logistics operations
+INC-1015,2025-12-16,Block A,Bravo,Production,Near Miss,Low,Completed,9,1,Near Miss at Bravo — Production operations
+INC-1077,2025-02-28,Tuna,Tuna-FPSO,Maintenance,Equipment Failure,Medium,In Progress,,5,Equipment Failure at Tuna-FPSO — Maintenance operations
+INC-1040,2025-10-14,Tuna,Tuna-FPSO,Drilling,Equipment Failure,Medium,Completed,29,1,Equipment Failure at Tuna-FPSO — Drilling operations
+INC-1010,2025-08-17,Andaman II,Andaman-Rig,Maintenance,Near Miss,Low,Completed,7,3,Near Miss at Andaman-Rig — Maintenance operations
+INC-1086,2025-07-23,Block A,Alpha,Logistics,First Aid,Low,Not Required,,1,First Aid at Alpha — Logistics operations
+INC-1003,2025-10-22,Block A,Bravo,Drilling,First Aid,Low,Completed,28,2,First Aid at Bravo — Drilling operations
+INC-1085,2026-03-19,Block A,Bravo,Drilling,Near Miss,Low,Not Required,,3,Near Miss at Bravo — Drilling operations
+INC-1013,2025-11-26,Andaman II,Andaman-Rig,Marine,Process Safety Event,High,In Progress,,3,Process Safety Event at Andaman-Rig — Marine operations
+INC-1073,2025-09-27,Tuna,Tuna-FPSO,Drilling,Lost Time Injury,High,Completed,2,5,Lost Time Injury at Tuna-FPSO — Drilling operations
+INC-1068,2025-11-14,Tuna,Tuna-FPSO,Logistics,Environmental Release,High,In Progress,,3,Environmental Release at Tuna-FPSO — Logistics operations
+INC-1058,2025-09-03,Block A,Alpha,HSE,Near Miss,Low,Not Required,,4,Near Miss at Alpha — HSE operations
+INC-1024,2025-07-11,Block A,Alpha,Drilling,Process Safety Event,,Completed,6,2,Process Safety Event at Alpha — Drilling operations
+INC-1044,2025-08-08,Block A,Alpha,Logistics,Process Safety Event,High,In Progress,,3,Process Safety Event at Alpha — Logistics operations
+INC-1051,2025-08-31,Block A,Bravo,HSE,Near Miss,High,Completed,3,5,Near Miss at Bravo — HSE operations
+INC-1055,2025-11-19,Block A,Alpha,Production,Lost Time Injury,High,In Progress,,2,Lost Time Injury at Alpha — Production operations
+INC-1036,2026-05-25,Block A,Alpha,HSE,Restricted Work,Medium,Completed,27,5,Restricted Work at Alpha — HSE operations
+INC-1072,2025-10-24,Block A,Bravo,HSE,First Aid,Low,Not Required,,1,First Aid at Bravo — HSE operations
+INC-1074,2025-06-18,Block A,Bravo,Marine,First Aid,Low,Completed,19,5,First Aid at Bravo — Marine operations
+INC-1021,2025-11-18,Block A,Alpha,Production,Restricted Work,Medium,Completed,4,2,Restricted Work at Alpha — Production operations
+INC-1007,2025-06-08,Tuna,Tuna-FPSO,Logistics,Near Miss,Low,Not Required,,2,Near Miss at Tuna-FPSO — Logistics operations
+INC-1047,2025-01-01,Block A,Alpha,HSE,Environmental Release,High,Completed,22,1,Environmental Release at Alpha — HSE operations
+INC-1069,2025-05-25,Block A,Bravo,Maintenance,First Aid,Low,Not Required,,3,First Aid at Bravo — Maintenance operations
+INC-1030,2025-02-20,Block A,Bravo,Production,Near Miss,Low,Not Required,,5,Near Miss at Bravo — Production operations
+INC-1020,2025-11-06,Andaman II,Andaman-Rig,Drilling,Near Miss,Low,Not Required,,5,Near Miss at Andaman-Rig — Drilling operations
+INC-1008,2025-12-03,Block A,Alpha,Production,Lost Time Injury,High,Completed,16,5,Lost Time Injury at Alpha — Production operations
+INC-1041,2025-04-23,Block A,Alpha,Logistics,Lost Time Injury,High,In Progress,,4,Lost Time Injury at Alpha — Logistics operations
+INC-1027,2025-07-01,Block A,Bravo,Production,Near Miss,Low,Not Required,,1,Near Miss at Bravo — Production operations
+INC-1039,2025-05-22,Block A,Bravo,Marine,Near Miss,Low,Not Required,,2,Near Miss at Bravo — Marine operations
+INC-1005,2025-03-02,Block A,Bravo,Production,Near Miss,Low,Not Required,,5,Near Miss at Bravo — Production operations
+INC-1025,2025-11-24,Tuna,Tuna-FPSO,Marine,Restricted Work,,Pending,,2,Restricted Work at Tuna-FPSO — Marine operations
+INC-1034,2025-12-20,Block A,Alpha,Marine,Process Safety Event,High,Completed,21,1,Process Safety Event at Alpha — Marine operations
+INC-1060,2025-10-21,Block A,Bravo,Production,First Aid,Low,Not Required,,2,First Aid at Bravo — Production operations
+INC-1009,2025-07-02,Block A,Alpha,Production,Equipment Failure,Medium,In Progress,,5,Equipment Failure at Alpha — Production operations
+INC-1037,2025-06-22,Tuna,Tuna-FPSO,Drilling,Near Miss,Low,Not Required,,2,Near Miss at Tuna-FPSO — Drilling operations
+INC-1057,2025-06-28,Block A,Bravo,Logistics,First Aid,Low,Not Required,,3,First Aid at Bravo — Logistics operations
+INC-1063,2025-07-17,Block A,Alpha,HSE,Process Safety Event,High,In Progress,,1,Process Safety Event at Alpha — HSE operations
+INC-1085,2025-02-05,Block A,Bravo,Drilling,Near Miss,Low,Not Required,,3,Near Miss at Bravo — Drilling operations
+INC-1083,2025-09-28,Block A,Bravo,Logistics,Restricted Work,Medium,In Progress,,4,Restricted Work at Bravo — Logistics operations
+INC-1012,2025-05-17,Tuna,Tuna-FPSO,Production,Environmental Release,High,Completed,16,2,Environmental Release at Tuna-FPSO — Production operations
+INC-1084,2025-01-02,Block A,Alpha,,Medical Treatment,Medium,Pending,,2,Medical Treatment at Alpha — Logistics operations
