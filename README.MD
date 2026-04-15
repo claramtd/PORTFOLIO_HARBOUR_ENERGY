@@ -6,7 +6,7 @@
 
 > An interactive static web dashboard presenting the results of operational performance analysis (Production, Safety, and Cost) for Harbour Energy's operations in Indonesia.
 
-**[🖥️ Live Demo](https://claramtd.github.io/PORTFOLIO_HARBOUR_ENERGY/portfolio/index.html)** | **[👷‍♀️ LinkedIn Profile](https://www.linkedin.com/in/claramatondang/)**
+**[🖥️ Live Demo](https://claramtd.github.io/PORTFOLIO_HARBOUR_ENERGY/portfolio/)** | **[👷‍♀️ LinkedIn Profile](https://www.linkedin.com/in/claramatondang/)**
 
 *⚠️ **Disclaimer:** The operational data in this project is synthetically generated (random seed 42) for portfolio case study purposes. The figures are anchored to Harbour Energy plc's public data (LSE filings) but do not represent the company's actual internal data.*
 
@@ -74,7 +74,7 @@ From the extraction of the 2025 operational data, three strategic initiatives ar
 
 Hi, I'm Clara\! I'm a final-year Geophysical Engineering student in Jakarta. I combine an analytical mindset with a passion for seismic data processing and energy data analytics. With a background in competitive physics, I excel at complex problem-solving and teamwork. I am currently seeking new opportunities to grow in my field and would love to connect and discuss all things related to geophysics and energy\!
 
-**Let's connect\!**
+**Let's connect!**
 
-[](https://www.linkedin.com/in/claramatondang/)
-[](https://github.com/claramtd)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/claramatondang/) 
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/claramtd)
