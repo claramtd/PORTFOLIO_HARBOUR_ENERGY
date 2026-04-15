@@ -6,7 +6,8 @@
 <title>Clara Matondang — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root {
     --cream: #F7F1E6;
@@ -22,6 +23,9 @@
     --sand-light: #EDD8BE;
     --muted: #8C7B6E;
     --white: #FDFAF5;
+    
+    --max-width: 1200px;
+    --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,660 +41,766 @@
     overflow-x: hidden;
   }
 
+  /* CUSTOM SCROLLBAR FOR BODY */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--sand); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--terracotta-light); }
+
+  /* SCROLL ANIMATION CLASSES */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(247, 241, 230, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--sand-light);
-    padding: 1rem 2rem;
+    background: rgba(247, 241, 230, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(237, 216, 190, 0.5);
+    padding: 1.2rem 2.5rem;
     display: flex; justify-content: space-between; align-items: center;
+    transition: var(--transition-smooth);
   }
 
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem; font-weight: 500;
+    font-size: 1.5rem; font-weight: 600;
     color: var(--brown);
     text-decoration: none;
     letter-spacing: 0.02em;
+    transition: color 0.3s;
   }
+  
+  .nav-logo:hover { color: var(--terracotta); }
 
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
   .nav-links a {
-    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.06em;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--brown-mid);
-    text-decoration: none; transition: color 0.2s;
+    text-decoration: none; transition: var(--transition-smooth);
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: ''; position: absolute; width: 0; height: 1px;
+    bottom: -4px; left: 0; background-color: var(--terracotta);
+    transition: var(--transition-smooth);
   }
 
   .nav-links a:hover { color: var(--terracotta); }
+  .nav-links a:hover::after { width: 100%; }
 
   /* HERO */
   .hero {
     min-height: 100vh;
-    padding: 7rem 2rem 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    padding: 8rem 2.5rem 4rem;
+    display: flex;
     align-items: center;
-    max-width: 1100px;
+    max-width: var(--max-width);
     margin: 0 auto;
     position: relative;
   }
 
-  .hero-text {}
+  .hero-text { max-width: 850px; }
+
+  .hero-welcome {
+    font-size: 0.85rem; font-weight: 600; color: var(--terracotta-dark);
+    background: linear-gradient(135deg, rgba(196, 98, 45, 0.15) 0%, rgba(196, 98, 45, 0.05) 100%);
+    padding: 0.6rem 1.4rem; border-radius: 50px;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 2rem; letter-spacing: 0.04em;
+    border: 1px solid rgba(196, 98, 45, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
 
   .hero-eyebrow {
-    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--terracotta); font-weight: 500; margin-bottom: 1.2rem;
-    display: flex; align-items: center; gap: 0.8rem;
+    font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 600; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
   }
 
   .hero-eyebrow::before {
-    content: ''; display: block; width: 32px; height: 1px;
+    content: ''; display: block; width: 40px; height: 1px;
     background: var(--terracotta);
   }
 
   h1.hero-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-size: clamp(3.5rem, 7vw, 6rem);
     font-weight: 300; line-height: 1.05;
-    color: var(--brown); margin-bottom: 1rem;
-    letter-spacing: -0.01em;
+    color: var(--brown); margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
   }
 
   h1.hero-name em {
     font-style: italic; color: var(--terracotta);
+    position: relative;
   }
 
   .hero-tagline {
-    font-size: 1.05rem; color: var(--brown-mid); margin-bottom: 2rem;
-    font-weight: 300; max-width: 420px; line-height: 1.8;
+    font-size: 1.1rem; color: var(--brown-mid); margin-bottom: 2.5rem;
+    font-weight: 400; max-width: 650px; line-height: 1.8;
   }
 
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
+  .hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; }
 
   .btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1.6rem; border-radius: 2px; font-size: 0.85rem;
-    font-weight: 500; letter-spacing: 0.04em; text-decoration: none;
-    transition: all 0.2s; cursor: pointer; border: none;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.8rem 1.8rem; border-radius: 4px; font-size: 0.9rem;
+    font-weight: 600; letter-spacing: 0.05em; text-decoration: none;
+    transition: var(--transition-smooth); cursor: pointer; border: none;
   }
 
   .btn-primary {
     background: var(--terracotta); color: var(--white);
+    box-shadow: 0 4px 15px rgba(196, 98, 45, 0.25);
   }
 
-  .btn-primary:hover { background: var(--terracotta-dark); }
+  .btn-primary:hover { 
+    background: var(--terracotta-dark); 
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(196, 98, 45, 0.35);
+  }
 
   .btn-outline {
     background: transparent; color: var(--brown);
     border: 1px solid var(--sand); 
   }
 
-  .btn-outline:hover { border-color: var(--terracotta); color: var(--terracotta); }
-
-  /* Hero visual */
-  .hero-visual {
-    display: flex; justify-content: center; align-items: center;
-    position: relative;
-  }
-
-  .hero-circle {
-    width: 380px; height: 380px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--sand-light) 0%, var(--cream-dark) 100%);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-
-  .hero-circle::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 70% 30%, rgba(196,98,45,0.12) 0%, transparent 60%);
-  }
-
-  .hero-initials {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 6rem; font-weight: 300; color: var(--brown-mid);
-    opacity: 0.35; letter-spacing: -0.05em;
-    user-select: none;
-  }
-
-  .hero-badge {
-    position: absolute; bottom: 28px; right: -12px;
-    background: var(--white); border: 1px solid var(--sand);
-    border-radius: 2px; padding: 0.75rem 1.1rem;
-    box-shadow: 4px 4px 0 var(--sand);
-  }
-
-  .hero-badge-label {
-    font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 0.1rem;
-  }
-
-  .hero-badge-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; font-weight: 500; color: var(--brown);
-  }
-
-  .hero-badge-2 {
-    position: absolute; top: 40px; left: -20px;
-    background: var(--terracotta); color: var(--white);
-    border-radius: 2px; padding: 0.6rem 1rem;
-  }
-
-  .hero-badge-2 .hero-badge-label { color: rgba(255,255,255,0.7); }
-  .hero-badge-2 .hero-badge-value { 
-    font-family: 'Cormorant Garamond', serif; color: white; font-size: 1rem; 
+  .btn-outline:hover { 
+    border-color: var(--terracotta); color: var(--terracotta); 
+    background: rgba(196, 98, 45, 0.05);
+    transform: translateY(-3px);
   }
 
   /* SECTION STRUCTURE */
-  section { padding: 5rem 2rem; }
+  section { padding: 7rem 2.5rem; }
+  section:nth-child(even) { background: var(--white); }
 
-  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-inner { max-width: var(--max-width); margin: 0 auto; }
 
   .section-label {
-    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--terracotta); font-weight: 500; margin-bottom: 0.5rem;
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 600; margin-bottom: 0.8rem;
     display: flex; align-items: center; gap: 0.8rem;
   }
 
   .section-label::before {
-    content: ''; display: block; width: 24px; height: 1px;
+    content: ''; display: block; width: 30px; height: 1px;
     background: var(--terracotta);
   }
 
   h2.section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
     font-weight: 400; line-height: 1.15; color: var(--brown);
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
 
   h2.section-title em { font-style: italic; color: var(--terracotta); }
 
   /* SKILLS */
-  #skills { background: var(--white); }
-
   .skills-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 2rem;
   }
 
   .skill-card {
     background: var(--cream); border: 1px solid var(--sand-light);
-    border-radius: 2px; padding: 1.5rem;
-    border-top: 3px solid var(--terracotta);
-    transition: transform 0.2s;
+    border-radius: 8px; padding: 2.5rem 2rem;
+    border-top: 4px solid var(--terracotta);
+    transition: var(--transition-smooth);
+    position: relative; overflow: hidden;
   }
 
-  .skill-card:hover { transform: translateY(-3px); }
+  .skill-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.4) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .skill-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+    border-color: var(--sand);
+  }
 
   .skill-card:nth-child(2) { border-top-color: var(--olive); }
-  .skill-card:nth-child(3) { border-top-color: var(--sand); }
-  .skill-card:nth-child(4) { border-top-color: var(--brown-mid); }
+  .skill-card:nth-child(3) { border-top-color: var(--brown-mid); }
 
   .skill-icon {
-    font-size: 1.5rem; margin-bottom: 0.8rem;
+    font-size: 2.2rem; margin-bottom: 1.2rem;
+    transition: transform 0.4s ease; color: var(--terracotta);
   }
+  
+  .skill-card:nth-child(2) .skill-icon { color: var(--olive); }
+  .skill-card:nth-child(3) .skill-icon { color: var(--brown-mid); }
+
+  .skill-card:hover .skill-icon { transform: scale(1.1) rotate(5deg); }
 
   .skill-card h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; font-weight: 500; margin-bottom: 0.6rem;
+    font-size: 1.6rem; font-weight: 600; margin-bottom: 0.8rem;
     color: var(--brown);
   }
 
   .skill-tags {
-    display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem;
   }
 
   .tag {
-    font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase;
-    padding: 0.2rem 0.6rem; border-radius: 2px;
-    background: var(--sand-light); color: var(--brown-mid);
-    border: 1px solid var(--sand);
+    font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.4rem 0.8rem; border-radius: 4px;
+    background: var(--white); color: var(--brown-mid);
+    border: 1px solid var(--sand-light); font-weight: 500;
+    transition: var(--transition-smooth);
+  }
+  
+  .tag:hover {
+    background: var(--terracotta); color: var(--white);
+    border-color: var(--terracotta); transform: translateY(-2px);
   }
 
-  /* PROJECTS */
-  #projects { background: var(--cream); }
+  /* PROJECTS - HORIZONTAL SCROLL */
+  .projects-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .scroll-hint {
+    text-align: right; font-size: 0.85rem; font-weight: 600;
+    color: var(--terracotta-light); margin-bottom: 1rem;
+    display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
 
   .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 2rem; /* Ruang untuk scrollbar */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* CUSTOM SCROLLBAR KHUSUS UNTUK WORK SHOWCASE */
+  .projects-grid::-webkit-scrollbar {
+    height: 12px;
+    display: block; /* Memaksa scrollbar tampil */
+  }
+  .projects-grid::-webkit-scrollbar-track {
+    background: rgba(212, 184, 150, 0.25);
+    border-radius: 10px;
+    margin: 0 10px;
+  }
+  .projects-grid::-webkit-scrollbar-thumb {
+    background: var(--terracotta-light);
+    border-radius: 10px;
+    border: 2px solid var(--cream); /* Efek padding dalam scroll */
+  }
+  .projects-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--terracotta);
   }
 
   .project-card {
+    flex: 0 0 350px; /* Lebar statis agar semua kartu presisi ukurannya */
+    max-width: 85vw; /* Responsif untuk mobile */
     background: var(--white); border: 1px solid var(--sand-light);
-    border-radius: 2px; overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
+    border-radius: 8px; overflow: hidden;
+    transition: var(--transition-smooth);
     display: flex; flex-direction: column;
+    height: auto;
+    scroll-snap-align: start;
   }
 
   .project-card:hover {
-    box-shadow: 6px 6px 0 var(--sand);
-    transform: translate(-3px, -3px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    transform: translateY(-8px);
+    border-color: var(--sand);
   }
 
-  .project-card.featured { grid-column: span 2; }
-
   .project-header {
-    height: 160px;
-    display: flex; align-items: flex-end; padding: 1.2rem;
+    height: 180px;
+    display: flex; align-items: flex-end; padding: 1.5rem;
     position: relative; overflow: hidden;
   }
 
+  .project-header::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+  }
+
   .project-header.oil-gas { background: linear-gradient(135deg, #3D2B1F 0%, #C4622D 100%); }
-  .project-header.placeholder { background: linear-gradient(135deg, var(--cream-dark), var(--sand-light)); }
+  .project-header.seismic-pro { background: linear-gradient(135deg, #1F2D3D 0%, #3A5A6B 100%); }
+  .project-header.seismic-interp { background: linear-gradient(135deg, #5C3D2C 0%, #8C7B6E 100%); }
+  .project-header.seismic-geo { background: linear-gradient(135deg, #2B3D1F 0%, #6B7A3E 100%); }
 
   .project-header-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 400; color: white;
-    line-height: 1.2;
+    font-size: 1.4rem; font-weight: 600; color: white;
+    line-height: 1.3; position: relative; z-index: 2;
   }
-
-  .project-header.placeholder .project-header-text { color: var(--muted); }
 
   .project-number {
     position: absolute; top: 1rem; right: 1rem;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem; font-weight: 300;
+    font-size: 4rem; font-weight: 300;
     color: rgba(255,255,255,0.15);
-    line-height: 1;
+    line-height: 1; z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .project-card:hover .project-number {
+    transform: scale(1.1) translate(-5px, 5px);
+    color: rgba(255,255,255,0.25);
   }
 
-  .project-header.placeholder .project-number { color: var(--sand); }
-
-  .project-body { padding: 1.5rem; flex: 1; }
+  .project-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
 
   .project-badge {
-    display: inline-block; font-size: 0.65rem; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 0.2rem 0.6rem;
-    background: var(--sand-light); color: var(--brown-mid);
-    border-radius: 2px; margin-bottom: 0.8rem;
+    display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.4rem 0.8rem;
+    background: var(--cream-dark); color: var(--brown-mid);
+    border-radius: 4px; margin-bottom: 1.2rem; align-self: flex-start;
+    font-weight: 600;
   }
 
   .project-badge.active { background: #EAF0DC; color: var(--olive); }
-  .project-badge.wip { background: var(--sand-light); color: var(--muted); }
 
   .project-body h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem; font-weight: 500; color: var(--brown);
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem; font-weight: 600; color: var(--brown);
+    margin-bottom: 0.8rem;
   }
 
   .project-body p {
-    font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem;
+    font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem;
   }
 
   .project-links {
-    display: flex; gap: 0.75rem; margin-top: auto;
+    display: flex; gap: 1rem; margin-top: auto;
   }
 
   .project-link {
-    font-size: 0.8rem; font-weight: 500; color: var(--terracotta);
+    font-size: 0.85rem; font-weight: 600; color: var(--terracotta);
     text-decoration: none; letter-spacing: 0.03em;
-    display: flex; align-items: center; gap: 0.3rem;
-    transition: gap 0.2s;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: var(--transition-smooth);
+    padding: 0.5rem 0;
   }
 
-  .project-link:hover { gap: 0.5rem; }
+  .project-link:hover { 
+    gap: 0.6rem; color: var(--terracotta-dark);
+  }
 
-  .project-link.disabled { color: var(--sand); pointer-events: none; }
-
-  /* EXPERIENCE */
-  #experience { background: var(--white); }
-
-  .timeline { position: relative; max-width: 720px; }
+  /* EXPERIENCE / TIMELINE */
+  .timeline { position: relative; max-width: 850px; margin-left: 10px; }
 
   .timeline::before {
     content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
-    width: 1px; background: var(--sand);
+    width: 2px; background: var(--sand-light);
   }
 
   .timeline-item {
-    padding-left: 2.5rem; margin-bottom: 3rem; position: relative;
+    padding-left: 3.5rem; margin-bottom: 4rem; position: relative;
   }
 
   .timeline-dot {
-    position: absolute; left: -5px; top: 8px;
-    width: 11px; height: 11px; border-radius: 50%;
-    background: var(--terracotta); border: 2px solid var(--cream);
+    position: absolute; left: -7px; top: 8px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--terracotta); border: 3px solid var(--white);
+    box-shadow: 0 0 0 3px var(--terracotta-light);
+    transition: transform 0.3s;
   }
+  
+  .timeline-item:hover .timeline-dot { transform: scale(1.3); }
 
   .timeline-period {
-    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--terracotta); margin-bottom: 0.4rem; font-weight: 500;
+    font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 0.5rem; font-weight: 600;
   }
 
   .timeline-role {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem; font-weight: 500; color: var(--brown);
-    margin-bottom: 0.2rem;
+    font-size: 1.6rem; font-weight: 600; color: var(--brown);
+    margin-bottom: 0.4rem;
   }
 
   .timeline-company {
-    font-size: 0.9rem; color: var(--brown-mid); margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 1rem; color: var(--brown-mid); margin-bottom: 1.2rem; font-weight: 500;
   }
 
   .timeline-desc {
-    font-size: 0.9rem; color: var(--muted); line-height: 1.75;
+    font-size: 1rem; color: var(--muted); line-height: 1.8;
   }
 
-  .timeline-desc li { margin-bottom: 0.3rem; }
+  .timeline-desc ul { list-style: none; }
+  .timeline-desc li { 
+    margin-bottom: 0.6rem; position: relative; padding-left: 1.2rem; 
+  }
+  .timeline-desc li::before {
+    content: '•'; position: absolute; left: 0; color: var(--terracotta); font-weight: bold;
+  }
+
+  /* ACHIEVEMENTS */
+  .achievements-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;
+  }
+  .achievement-item {
+    background: var(--white); border: 1px solid var(--sand-light);
+    border-radius: 8px; padding: 1.8rem;
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    transition: var(--transition-smooth);
+  }
+  .achievement-item:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-color: var(--sand);
+  }
+  .achievement-medal {
+    font-size: 1.8rem; flex-shrink: 0; line-height: 1; color: var(--terracotta);
+    background: var(--cream); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px;
+  }
+  .achievement-year {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 0.5rem; font-weight: 600;
+  }
+  .achievement-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 600; color: var(--brown); line-height: 1.4;
+  }
+  .achievement-org {
+    font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  /* PUBLICATIONS */
+  .pub-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 850px; }
+  .pub-item {
+    background: var(--cream); border: 1px solid var(--sand-light);
+    border-left: 5px solid var(--terracotta);
+    border-radius: 0 8px 8px 0; padding: 2rem;
+    transition: var(--transition-smooth);
+  }
+  .pub-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  }
+  .pub-item:nth-child(2) { border-left-color: var(--olive); }
+  .pub-venue {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 0.8rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .pub-item:nth-child(2) .pub-venue { color: var(--olive); }
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; color: var(--brown); line-height: 1.5;
+  }
 
   /* EDUCATION */
-  #education { background: var(--cream); }
-
   .edu-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem; max-width: 800px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem; max-width: 1000px;
   }
 
   .edu-card {
     background: var(--white); border: 1px solid var(--sand-light);
-    border-radius: 2px; padding: 1.8rem;
+    border-radius: 8px; padding: 2.5rem;
+    transition: var(--transition-smooth);
+    border-top: 4px solid var(--terracotta);
+  }
+  
+  .edu-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+    border-color: var(--sand);
   }
 
+  .edu-card.soft-skills { border-top-color: var(--olive); }
+
   .edu-year {
-    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--terracotta); margin-bottom: 0.5rem; font-weight: 500;
+    font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 0.8rem; font-weight: 600;
   }
+  .edu-card.soft-skills .edu-year { color: var(--olive); }
 
   .edu-degree {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; font-weight: 500; color: var(--brown);
-    margin-bottom: 0.3rem;
+    font-size: 1.6rem; font-weight: 600; color: var(--brown);
+    margin-bottom: 0.8rem;
   }
 
-  .edu-school { font-size: 0.9rem; color: var(--brown-mid); margin-bottom: 0.8rem; }
+  .edu-school { 
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 1.05rem; color: var(--brown-mid); margin-bottom: 1.5rem; font-weight: 500;
+  }
 
   .edu-detail {
-    font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+    font-size: 1rem; color: var(--muted); line-height: 1.8;
   }
 
   /* CONTACT */
   #contact { background: var(--brown); color: var(--cream); }
-
   #contact .section-label { color: var(--terracotta-light); }
   #contact .section-label::before { background: var(--terracotta-light); }
-
   #contact h2.section-title { color: var(--cream); }
 
   .contact-layout {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
   }
 
   .contact-text {
-    font-size: 1rem; color: var(--sand); line-height: 1.8; margin-bottom: 2rem;
+    font-size: 1.1rem; color: var(--sand); line-height: 1.8; margin-bottom: 3rem;
   }
 
-  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
   .contact-link {
     display: flex; align-items: center; gap: 1rem;
     color: var(--cream); text-decoration: none;
-    font-size: 0.95rem; transition: color 0.2s;
+    font-size: 1rem; transition: var(--transition-smooth);
+    padding: 1rem; border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,184,150,0.1);
   }
 
-  .contact-link:hover { color: var(--terracotta-light); }
+  .contact-link:hover { 
+    background: rgba(255,255,255,0.08);
+    border-color: var(--terracotta-light);
+    transform: translateY(-3px);
+  }
 
   .contact-link-icon {
-    width: 40px; height: 40px; border-radius: 2px;
-    border: 1px solid rgba(212,184,150,0.3);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--terracotta); color: var(--white);
     display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
-    transition: background 0.2s, border-color 0.2s;
+    font-size: 1.2rem; flex-shrink: 0;
   }
-
-  .contact-link:hover .contact-link-icon {
-    background: rgba(212,184,150,0.1);
-    border-color: var(--terracotta-light);
-  }
-
-  .contact-right {}
 
   .contact-info-card {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(212,184,150,0.2);
-    border-radius: 2px; padding: 2rem;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(212,184,150,0.15);
+    border-radius: 8px; padding: 3rem;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.2);
   }
 
-  .contact-field { margin-bottom: 1.5rem; }
+  .contact-field { margin-bottom: 2rem; }
+  .contact-field:last-child { margin-bottom: 0; }
 
   .contact-field-label {
-    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--sand); opacity: 0.7; margin-bottom: 0.3rem;
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sand); opacity: 0.7; margin-bottom: 0.5rem;
   }
 
   .contact-field-value {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem; color: var(--cream);
+    font-size: 1.4rem; color: var(--cream); font-weight: 500;
   }
 
   /* FOOTER */
   footer {
-    background: var(--brown); border-top: 1px solid rgba(212,184,150,0.15);
-    padding: 1.5rem 2rem; text-align: center;
-    font-size: 0.8rem; color: var(--muted);
-    letter-spacing: 0.03em;
+    background: #1A0E09; border-top: 1px solid rgba(212,184,150,0.1);
+    padding: 2.5rem; text-align: center;
+    font-size: 0.9rem; color: var(--sand); opacity: 0.8;
+    letter-spacing: 0.05em;
   }
 
-  /* DIVIDER */
-  .divider {
-    width: 100%; height: 80px; overflow: hidden;
-    display: block;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+  /* ANIMATION DELAYS UNTUK HERO */
+  .hero-text > * { animation: fadeUpOnLoad 0.8s ease both; }
+  @keyframes fadeUpOnLoad {
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  .hero-text > * {
-    animation: fadeUp 0.7s ease both;
-  }
-
-  .hero-eyebrow { animation-delay: 0.1s; }
-  h1.hero-name { animation-delay: 0.2s; }
-  .hero-tagline { animation-delay: 0.3s; }
-  .hero-cta { animation-delay: 0.4s; }
-
-  .hero-visual {
-    animation: fadeUp 0.7s ease 0.3s both;
-  }
+  
+  .hero-welcome { animation-delay: 0.1s; }
+  .hero-eyebrow { animation-delay: 0.2s; }
+  h1.hero-name { animation-delay: 0.4s; }
+  .hero-tagline { animation-delay: 0.6s; }
+  .hero-cta { animation-delay: 0.8s; }
 
   /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 6rem; }
-    .hero-visual { order: -1; }
-    .hero-circle { width: 240px; height: 240px; }
-    .hero-initials { font-size: 4rem; }
-    .project-card.featured { grid-column: span 1; }
-    .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+  @media (max-width: 900px) {
+    .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-links { grid-template-columns: 1fr; }
     .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .project-card { flex: 0 0 300px; } /* sedikit lebih kecil di mobile */
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<nav id="navbar">
   <a href="#" class="nav-logo">Clara Matondang</a>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#education">Education</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#publications">Publications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="home" style="padding: 0;">
   <div class="hero">
     <div class="hero-text">
-      <div class="hero-eyebrow">Geophysical Engineer</div>
+      <div class="hero-welcome">
+        <i class="fa-solid fa-sparkles"></i> Welcome to my personal portfolio site
+      </div>
+      <div class="hero-eyebrow">
+        <i class="fa-regular fa-compass"></i> Geophysical Engineer
+      </div>
       <h1 class="hero-name">
         Hi, I'm<br><em>Clara.</em>
       </h1>
       <p class="hero-tagline">
-        Final-year Geophysical Engineering student at Pertamina University, Jakarta — bridging seismic data processing, energy analytics, and competitive problem-solving.
+        Final-year Geophysical Engineering student at Universitas Pertamina — specializing in seismic data processing, subsurface interpretation, and energy analytics.
       </p>
       <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">View My Work →</a>
-        <a href="https://www.linkedin.com/in/claramatondang/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="hero-circle">
-        <span class="hero-initials">CM</span>
-        <div class="hero-badge">
-          <div class="hero-badge-label">Based in</div>
-          <div class="hero-badge-value">Jakarta, Indonesia</div>
-        </div>
-        <div class="hero-badge-2">
-          <div class="hero-badge-label">Field</div>
-          <div class="hero-badge-value">Oil &amp; Gas / Energy</div>
-        </div>
+        <a href="#projects" class="btn btn-primary"><i class="fa-regular fa-folder-open"></i> View My Work</a>
+        <a href="https://www.linkedin.com/in/claramatondang/" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
-  <div class="section-inner">
-    <div class="section-label">What I bring</div>
+  <div class="section-inner fade-up">
+    <div class="section-label">
+      <i class="fa-solid fa-screwdriver-wrench"></i> What I bring
+    </div>
     <h2 class="section-title">Skills &amp; <em>Tech Stack</em></h2>
 
     <div class="skills-grid">
       <div class="skill-card">
-        <div class="skill-icon">⛽</div>
-        <h3>Geophysics &amp; Seismic</h3>
-        <p style="font-size:0.88rem; color:var(--muted); margin-top:0.4rem;">
-          Seismic data processing, subsurface interpretation, well-log analysis, and reservoir characterization workflows.
-        </p>
+        <div class="skill-icon"><i class="fa-solid fa-wave-square"></i></div>
+        <h3>Seismic Processing</h3>
+        <p>2D/3D seismic data processing workflows 〽️ noise attenuation, velocity analysis, statics correction, and Prestack Time Migration (PSTM).</p>
         <div class="skill-tags">
-          <span class="tag">Seismic Processing</span>
-          <span class="tag">Well Log</span>
-          <span class="tag">Petrel</span>
+          <span class="tag">Vista</span>
+          <span class="tag">Echos</span>
+          <span class="tag">Geovation</span>
+          <span class="tag">ProMAX</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <div class="skill-icon">📊</div>
+        <div class="skill-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <h3>Subsurface Interpretation</h3>
+        <p>Horizon picking, fault delineation, stratigraphic correlation, isopach maps, time-to-depth conversion, and reservoir characterization.</p>
+        <div class="skill-tags">
+          <span class="tag">Petrel</span>
+          <span class="tag">Well Log</span>
+          <span class="tag">QGIS</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-chart-line"></i></div>
         <h3>Data Analytics</h3>
-        <p style="font-size:0.88rem; color:var(--muted); margin-top:0.4rem;">
-          End-to-end data workflows from cleaning and validation to visualization and executive reporting.
-        </p>
+        <p>Data cleaning, analysis, and visualization workflows. Machine learning applications in geoscience, including regression and random forest models.</p>
         <div class="skill-tags">
           <span class="tag">Python</span>
+          <span class="tag">SQL</span>
           <span class="tag">Excel</span>
           <span class="tag">Pandas</span>
-          <span class="tag">Matplotlib</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon">💻</div>
-        <h3>Web &amp; Dashboards</h3>
-        <p style="font-size:0.88rem; color:var(--muted); margin-top:0.4rem;">
-          Building interactive web dashboards for operational performance data presentation and storytelling.
-        </p>
-        <div class="skill-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">Chart.js</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon">🔬</div>
-        <h3>Problem Solving</h3>
-        <p style="font-size:0.88rem; color:var(--muted); margin-top:0.4rem;">
-          Background in competitive physics. Analytical thinking applied to complex multi-variable technical challenges.
-        </p>
-        <div class="skill-tags">
-          <span class="tag">Physics Olympiad</span>
-          <span class="tag">Research</span>
-          <span class="tag">Critical Thinking</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
-  <div class="section-inner">
-    <div class="section-label">Work showcase</div>
+  <div class="section-inner fade-up">
+    <div class="section-label">
+      <i class="fa-solid fa-briefcase"></i> Work showcase
+    </div>
     <h2 class="section-title">Selected <em>Projects</em></h2>
 
-    <div class="projects-grid">
-      <!-- Harbour Energy — Featured -->
-      <div class="project-card featured">
-        <div class="project-header oil-gas">
-          <span class="project-number">01</span>
-          <div class="project-header-text">Harbour Energy Indonesia<br>Operation Dashboard</div>
-        </div>
-        <div class="project-body">
-          <span class="project-badge active">Active</span>
-          <h3>Operation Support Intern Portfolio</h3>
-          <p>
-            End-to-end operational performance analysis for Harbour Energy's Indonesia assets (Natuna Sea Block A &amp; Tuna Block). 
-            Covers production tracking (~13,800 boepd gross), safety TRIR calculation, unit OpEx analysis, and data quality reporting — 
-            delivered as an interactive static web dashboard.
-          </p>
-          <div class="skill-tags" style="margin-bottom: 1.2rem;">
-            <span class="tag">Data Analytics</span>
-            <span class="tag">HTML/JS</span>
-            <span class="tag">Excel</span>
-            <span class="tag">Oil &amp; Gas</span>
-          </div>
-          <div class="project-links">
-            <a href="https://claramtd.github.io/PORTFOLIO_HARBOUR_ENERGY/portfolio/index.html" target="_blank" class="project-link">Live Demo →</a>
-            <a href="https://github.com/claramtd/PORTFOLIO_HARBOUR_ENERGY" target="_blank" class="project-link">GitHub →</a>
-          </div>
-        </div>
+    <div class="projects-container">
+      <div class="scroll-hint">
+        <i class="fa-solid fa-arrows-left-right"></i> Scroll to explore more
       </div>
-
-      <!-- Placeholder 2 -->
-      <div class="project-card">
-        <div class="project-header placeholder">
-          <span class="project-number" style="color: var(--sand); opacity:0.5;">02</span>
-          <div class="project-header-text">Coming soon</div>
-        </div>
-        <div class="project-body">
-          <span class="project-badge wip">In Progress</span>
-          <h3>Seismic Interpretation Study</h3>
-          <p>
-            A subsurface interpretation project using well-log and seismic data to characterize a target reservoir. Details will be published upon completion.
-          </p>
-          <div class="project-links">
-            <a href="#" class="project-link disabled">Coming soon</a>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header oil-gas">
+            <span class="project-number">01</span>
+            <div class="project-header-text">Harbour Energy Indonesia<br>Operation Dashboard</div>
+          </div>
+          <div class="project-body">
+            <span class="project-badge active">Active Portfolio</span>
+            <h3>Operation Support Intern</h3>
+            <p>End-to-end operational performance analysis for Harbour Energy's Indonesia assets. Covers production tracking (~13,800 boepd gross), safety TRIR calculation, and OpEx analysis.</p>
+            <div class="skill-tags" style="margin-bottom: 1.5rem;">
+              <span class="tag">Data Analytics</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Oil &amp; Gas</span>
+            </div>
+            <div class="project-links">
+              <a href="https://claramtd.github.io/PORTFOLIO_HARBOUR_ENERGY/portfolio/index.html" target="_blank" class="project-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://github.com/claramtd/PORTFOLIO_HARBOUR_ENERGY" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Placeholder 3 -->
-      <div class="project-card">
-        <div class="project-header placeholder">
-          <span class="project-number" style="color: var(--sand); opacity:0.5;">03</span>
-          <div class="project-header-text">Coming soon</div>
+        <div class="project-card">
+          <div class="project-header seismic-pro">
+            <span class="project-number">02</span>
+            <div class="project-header-text">2D &amp; 3D Seismic Processing<br>PT Nursrian Mandiri Berkah</div>
+          </div>
+          <div class="project-body">
+            <span class="project-badge active">Aug 2025 – Feb 2026</span>
+            <h3>Processing Geophysicist</h3>
+            <p>Processed 2D land seismic data using Echos and Geovation — applying ground roll attenuation with LFAF &amp; AGORA methods, velocity analysis, and PSTM.</p>
+            <div class="skill-tags" style="margin-bottom: 1.5rem;">
+              <span class="tag">Echos</span>
+              <span class="tag">Geovation</span>
+              <span class="tag">ProMAX</span>
+            </div>
+          </div>
         </div>
-        <div class="project-body">
-          <span class="project-badge wip">Planned</span>
-          <h3>Energy Data Analysis</h3>
-          <p>
-            Python-based analysis of Indonesian energy production datasets. Exploring production trends and efficiency benchmarks across upstream assets.
-          </p>
-          <div class="project-links">
-            <a href="#" class="project-link disabled">Coming soon</a>
+
+        <div class="project-card">
+          <div class="project-header seismic-interp">
+            <span class="project-number">03</span>
+            <div class="project-header-text">Seismic Interpretation<br>Academic Project</div>
+          </div>
+          <div class="project-body">
+            <span class="project-badge active">Feb – June 2025</span>
+            <h3>Subsurface Study</h3>
+            <p>Interpreted seismic data in Petrel — horizon picking, fault delineation, and stratigraphic correlation. Generated isopach maps and time-to-depth conversion modeling.</p>
+            <div class="skill-tags" style="margin-bottom: 1.5rem;">
+              <span class="tag">Petrel</span>
+              <span class="tag">Well Log</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header seismic-geo">
+            <span class="project-number">04</span>
+            <div class="project-header-text">2D Seismic Processing<br>PT Geodwipa Teknika</div>
+          </div>
+          <div class="project-body">
+            <span class="project-badge active">Nov 2024 – Apr 2025</span>
+            <h3>Geophysicist Intern</h3>
+            <p>Processed 2D seismic data using Vista for denoising, velocity analysis, statics correction, and PSTM. Applied Curvelet Transform for advanced noise attenuation.</p>
+            <div class="skill-tags" style="margin-bottom: 1.5rem;">
+              <span class="tag">Vista</span>
+              <span class="tag">Curvelet Transform</span>
+            </div>
           </div>
         </div>
       </div>
@@ -698,101 +808,211 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-inner">
-    <div class="section-label">Career path</div>
-    <h2 class="section-title">Experience &amp; <em>Internships</em></h2>
+  <div class="section-inner fade-up">
+    <div class="section-label">
+      <i class="fa-solid fa-route"></i> Career path
+    </div>
+    <h2 class="section-title">Leadership &amp; <em>Organizations</em></h2>
 
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2025 — Present</div>
-        <div class="timeline-role">Operation Support Intern (Simulated)</div>
-        <div class="timeline-company">Harbour Energy Indonesia — Portfolio Case Study</div>
+        <div class="timeline-role">President</div>
+        <div class="timeline-company">
+          <i class="fa-solid fa-users"></i> HAGI Student Chapter — Universitas Pertamina
+        </div>
         <div class="timeline-desc">
-          <ul style="list-style: disc; padding-left: 1.2rem;">
-            <li>Analyzed 2025 operational data for Natuna Sea Block A and Tuna Block assets</li>
-            <li>Calculated TRIR, unit OpEx, and production performance KPIs for executive stakeholders</li>
-            <li>Proposed 3 strategic initiatives with projected savings of ~$800K–1.6M/year</li>
-            <li>Built an interactive web dashboard (HTML/JS) to present findings to COO, CFO, and VP HSE</li>
-          </ul>
+          Leading a team of geophysics students in organizing academic, scientific, and professional development programs aligned with HAGI's national mission.
         </div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot" style="background: var(--olive);"></div>
-        <div class="timeline-period">Add your experience</div>
-        <div class="timeline-role">Your Role Here</div>
-        <div class="timeline-company">Company / Organization</div>
-        <div class="timeline-desc" style="font-style: italic; color: var(--sand);">
-          Update this section with your actual internship or work experience.
+        <div class="timeline-period">Dec 2024</div>
+        <div class="timeline-role">Event Division — Student Volunteer</div>
+        <div class="timeline-company">
+          <i class="fa-solid fa-microphone-lines"></i> 49th HAGI Annual Scientific Meeting — Padang
+        </div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Coordinated Oral Presentation sessions, achieving 100% schedule adherence.</li>
+            <li>Sessions attended by participants from Pertamina, Lemigas, ExxonMobil.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background: var(--sand);"></div>
+        <div class="timeline-period">Mar 2024 — May 2025</div>
+        <div class="timeline-role">Head of Internal Department</div>
+        <div class="timeline-company">
+           <i class="fa-solid fa-users"></i> HAGI Student Chapter — Universitas Pertamina
+        </div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Organized ExcelGeeks — Excel training event attended by ±50 participants.</li>
+            <li>Planned and supervised HAGI Training: QGIS Discussion &amp; Hands-On for ±70 participants.</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
+<section id="achievements">
+  <div class="section-inner fade-up">
+    <div class="section-label">
+      <i class="fa-solid fa-trophy"></i> Recognition
+    </div>
+    <h2 class="section-title">Awards &amp; <em>Achievements</em></h2>
+
+    <div class="achievements-grid">
+      <div class="achievement-item">
+        <div class="achievement-medal"><i class="fa-solid fa-medal" style="color: #A6A6A6;"></i></div>
+        <div>
+          <div class="achievement-year">Dec 2025</div>
+          <div class="achievement-title">1st Runner Up — Derrick Geothermal Case Competition</div>
+          <div class="achievement-org"><i class="fa-regular fa-building"></i> Derrick</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-medal"><i class="fa-solid fa-medal" style="color: #FFD700;"></i></div>
+        <div>
+          <div class="achievement-year">Nov 2025</div>
+          <div class="achievement-title">Gold Medal — National Heroes Competition</div>
+          <div class="achievement-org"><i class="fa-solid fa-flag"></i> National Level</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-medal"><i class="fa-solid fa-medal" style="color: #FFD700;"></i></div>
+        <div>
+          <div class="achievement-year">May 2025</div>
+          <div class="achievement-title">Gold Medal — Alberta Competition, Physics</div>
+          <div class="achievement-org"><i class="fa-solid fa-building-columns"></i> University Level</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-medal"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div>
+          <div class="achievement-year">Oct 2024</div>
+          <div class="achievement-title">Awardee — Beasiswa Unggulan Semester (BUS)</div>
+          <div class="achievement-org"><i class="fa-solid fa-building-columns"></i> Universitas Pertamina</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-medal"><i class="fa-solid fa-seedling" style="color: #4CAF50;"></i></div>
+        <div>
+          <div class="achievement-year">Jan 2024</div>
+          <div class="achievement-title">Awardee — Sobat Bumi Scholarship</div>
+          <div class="achievement-org"><i class="fa-regular fa-building"></i> Pertamina Foundation</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-medal"><i class="fa-solid fa-file-lines"></i></div>
+        <div>
+          <div class="achievement-year">Sep 2024</div>
+          <div class="achievement-title">Paper Presenter — Annual Scientific Meeting 2024</div>
+          <div class="achievement-org"><i class="fa-solid fa-users-rectangle"></i> HAGI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="section-inner fade-up">
+    <div class="section-label">
+      <i class="fa-solid fa-book-open"></i> Research output
+    </div>
+    <h2 class="section-title">Publications &amp; <em>Papers</em></h2>
+
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-venue"><i class="fa-solid fa-users"></i> HAGI Annual Scientific Meeting 2024</div>
+        <div class="pub-title">Soil Vulnerability Levels Based on Microtremor Data Using the HVSR Method in Wangunsari, Cisolok</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-venue"><i class="fa-solid fa-book-journal-whills"></i> Journal of Science and Informatics for Society</div>
+        <div class="pub-title">An Approach for Earthquake Magnitude Prediction in Sumatra using Linear Regression and Random Forest Algorithms</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="education">
-  <div class="section-inner">
-    <div class="section-label">Academic background</div>
+  <div class="section-inner fade-up">
+    <div class="section-label">
+      <i class="fa-solid fa-user-graduate"></i> Academic background
+    </div>
     <h2 class="section-title"><em>Education</em></h2>
 
     <div class="edu-grid">
       <div class="edu-card">
-        <div class="edu-year">2021 — Present</div>
-        <div class="edu-degree">S.T. Teknik Geofisika</div>
-        <div class="edu-school">Universitas Pertamina, Jakarta</div>
+        <div class="edu-year">2022 — Present</div>
+        <div class="edu-degree">S.T. Geophysical Engineering</div>
+        <div class="edu-school">
+          <i class="fa-solid fa-building-columns"></i> Universitas Pertamina, Jakarta
+        </div>
         <div class="edu-detail">
-          Final-year student. Focus areas include seismic data processing, subsurface characterization, and energy data analytics. Background in competitive physics (olympiad).
+          Final-year student specializing in seismic data processing (Vista, Echos, Geovation, ProMAX) and subsurface characterization. Active member and current President of HAGI Student Chapter.
         </div>
       </div>
 
-      <div class="edu-card" style="border-top: 3px solid var(--olive);">
-        <div class="edu-year" style="color: var(--olive);">Achievements</div>
-        <div class="edu-degree">Physics Olympiad</div>
-        <div class="edu-school">Competitive Background</div>
+      <div class="edu-card soft-skills">
+        <div class="edu-year">Soft Skills</div>
+        <div class="edu-degree">Leadership &amp; Communication</div>
+        <div class="edu-school" style="color: var(--olive);">
+          <i class="fa-solid fa-network-wired"></i> Developed through organizations
+        </div>
         <div class="edu-detail">
-          Competed in physics olympiads, developing analytical problem-solving skills applied to complex geophysical and energy challenges.
+          Proven leadership as chapter president and department head. Experienced in teaching (GIS, Excel), stakeholder coordination, writing, and team management across academic and scientific events.
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-  <div class="section-inner">
-    <div class="section-label">Get in touch</div>
+  <div class="section-inner fade-up">
+    <div class="section-label">
+      <i class="fa-regular fa-paper-plane"></i> Get in touch
+    </div>
     <h2 class="section-title">Let's <em>Connect</em></h2>
 
     <div class="contact-layout">
       <div>
         <p class="contact-text">
-          I'm currently seeking internship and entry-level opportunities in geophysics, energy data analytics, and upstream oil &amp; gas. 
-          Open to collaborating on interesting projects or just having a chat about the industry.
+          I'm a final-year Geophysical Engineering student actively seeking internship and entry-level opportunities in seismic processing, subsurface interpretation, and upstream oil &amp; gas.
         </p>
         <div class="contact-links">
           <a href="https://www.linkedin.com/in/claramatondang/" target="_blank" class="contact-link">
-            <div class="contact-link-icon">in</div>
+            <div class="contact-link-icon"><i class="fa-brands fa-linkedin-in"></i></div>
             <div>
-              <div style="font-weight:500;">LinkedIn</div>
-              <div style="font-size:0.8rem; color:var(--sand);">claramatondang</div>
+              <div style="font-weight:600;">LinkedIn</div>
+              <div style="font-size:0.85rem; color:var(--sand);">claramatondang</div>
             </div>
           </a>
           <a href="https://github.com/claramtd" target="_blank" class="contact-link">
-            <div class="contact-link-icon" style="font-size:0.85rem;">GH</div>
+            <div class="contact-link-icon"><i class="fa-brands fa-github"></i></div>
             <div>
-              <div style="font-weight:500;">GitHub</div>
-              <div style="font-size:0.8rem; color:var(--sand);">claramtd</div>
+              <div style="font-weight:600;">GitHub</div>
+              <div style="font-size:0.85rem; color:var(--sand);">claramtd</div>
             </div>
           </a>
-          <a href="mailto:your.email@example.com" class="contact-link">
-            <div class="contact-link-icon" style="font-size:0.8rem;">@</div>
+          <a href="mailto:claraagnatasiam@gmail.com" class="contact-link">
+            <div class="contact-link-icon"><i class="fa-solid fa-envelope"></i></div>
             <div>
-              <div style="font-weight:500;">Email</div>
-              <div style="font-size:0.8rem; color:var(--sand);">your.email@example.com</div>
+              <div style="font-weight:600;">Email</div>
+              <div style="font-size:0.85rem; color:var(--sand);">claraagnatasiam@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+6285762350407" class="contact-link">
+            <div class="contact-link-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div style="font-weight:600;">Phone</div>
+              <div style="font-size:0.85rem; color:var(--sand);">+62 857 6235 0407</div>
             </div>
           </a>
         </div>
@@ -802,19 +1022,19 @@
         <div class="contact-info-card">
           <div class="contact-field">
             <div class="contact-field-label">Currently</div>
-            <div class="contact-field-value">Final-year Student — Pertamina University</div>
+            <div class="contact-field-value">Final-year Student — Universitas Pertamina</div>
           </div>
           <div class="contact-field">
             <div class="contact-field-label">Location</div>
-            <div class="contact-field-value">Jakarta, Indonesia</div>
+            <div class="contact-field-value">South Jakarta, Indonesia</div>
           </div>
           <div class="contact-field">
             <div class="contact-field-label">Open to</div>
             <div class="contact-field-value">Internships · Entry-level · Research</div>
           </div>
-          <div class="contact-field" style="margin-bottom:0;">
+          <div class="contact-field">
             <div class="contact-field-label">Focus areas</div>
-            <div class="contact-field-value">Geophysics · Energy Analytics · Upstream O&amp;G</div>
+            <div class="contact-field-value">Seismic Processing · Subsurface · Upstream O&amp;G</div>
           </div>
         </div>
       </div>
@@ -822,10 +1042,46 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2025 Clara Matondang · Built with HTML/CSS/JS · Hosted on GitHub Pages</p>
+  <p>© 2026 Clara Agnatasia Matondang · Geophysical Engineering</p>
 </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Nav bar shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+        navbar.style.borderBottom = '1px solid transparent';
+      } else {
+        navbar.style.boxShadow = 'none';
+        navbar.style.borderBottom = '1px solid rgba(237, 216, 190, 0.5)';
+      }
+    });
+
+    // Intersection Observer untuk Fade-Up Animation
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const fadeElements = document.querySelectorAll('.fade-up');
+    fadeElements.forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
 
 </body>
 </html>
