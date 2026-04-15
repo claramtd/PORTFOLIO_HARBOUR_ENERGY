@@ -58,6 +58,45 @@
     transform: translateY(0);
   }
 
+  /* GLOBAL SECTION NAVIGATOR WIDGET */
+  .section-nav-widget {
+    position: fixed;
+    right: 2rem;
+    bottom: 2.5rem;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    opacity: 0; /* Hidden by default at top */
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: var(--transition-smooth);
+  }
+  .section-nav-widget.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav-btn {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(247, 241, 230, 0.95);
+    border: 1px solid var(--terracotta-light);
+    color: var(--terracotta);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(5px);
+  }
+  .nav-btn:hover {
+    background: var(--terracotta);
+    color: var(--white);
+    border-color: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -143,7 +182,6 @@
 
   h1.hero-name em {
     font-style: italic; color: var(--terracotta);
-    position: relative;
   }
 
   .hero-tagline {
@@ -183,8 +221,8 @@
   }
 
   /* SECTION STRUCTURE */
-  section { padding: 7rem 2.5rem; }
-  section:nth-child(even) { background: var(--white); }
+  .scroll-section { padding: 7rem 2.5rem; }
+  .scroll-section:nth-child(even) { background: var(--white); }
 
   .section-inner { max-width: var(--max-width); margin: 0 auto; }
 
@@ -271,17 +309,41 @@
     border-color: var(--terracotta); transform: translateY(-2px);
   }
 
-  /* PROJECTS - HORIZONTAL SCROLL */
+  /* PROJECTS - HORIZONTAL SCROLL WITH ARROWS */
   .projects-container {
     position: relative;
     width: 100%;
   }
+
+  /* Slider Arrows */
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px; height: 50px;
+    background: var(--white);
+    border: 1px solid var(--sand);
+    color: var(--terracotta);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 10;
+    transition: var(--transition-smooth);
+  }
+  .slider-btn:hover {
+    background: var(--terracotta);
+    color: var(--white);
+    border-color: var(--terracotta);
+    box-shadow: 0 6px 20px rgba(196, 98, 45, 0.3);
+  }
+  .slider-btn.left { left: -25px; }
+  .slider-btn.right { right: -25px; }
   
-  .scroll-hint {
-    text-align: right; font-size: 0.85rem; font-weight: 600;
-    color: var(--terracotta-light); margin-bottom: 1rem;
-    display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem;
-    letter-spacing: 0.05em; text-transform: uppercase;
+  /* Sembunyikan panah di layar kecil (mereka bisa langsung swipe) */
+  @media (max-width: 768px) {
+    .slider-btn { display: none; }
   }
 
   .projects-grid {
@@ -289,38 +351,27 @@
     gap: 2rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding-bottom: 2rem; /* Ruang untuk scrollbar */
+    padding-bottom: 2.5rem; 
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--terracotta-light) rgba(212, 184, 150, 0.25);
   }
 
-  /* CUSTOM SCROLLBAR KHUSUS UNTUK WORK SHOWCASE */
-  .projects-grid::-webkit-scrollbar {
-    height: 12px;
-    display: block; /* Memaksa scrollbar tampil */
-  }
-  .projects-grid::-webkit-scrollbar-track {
-    background: rgba(212, 184, 150, 0.25);
-    border-radius: 10px;
-    margin: 0 10px;
-  }
-  .projects-grid::-webkit-scrollbar-thumb {
-    background: var(--terracotta-light);
-    border-radius: 10px;
-    border: 2px solid var(--cream); /* Efek padding dalam scroll */
-  }
-  .projects-grid::-webkit-scrollbar-thumb:hover {
-    background: var(--terracotta);
-  }
+  .projects-grid::-webkit-scrollbar { height: 12px; }
+  .projects-grid::-webkit-scrollbar-track { background: rgba(212, 184, 150, 0.25); border-radius: 10px; }
+  .projects-grid::-webkit-scrollbar-thumb { background: var(--terracotta-light); border-radius: 10px; border: 2px solid var(--cream); }
+  .projects-grid::-webkit-scrollbar-thumb:hover { background: var(--terracotta); }
 
   .project-card {
-    flex: 0 0 350px; /* Lebar statis agar semua kartu presisi ukurannya */
-    max-width: 85vw; /* Responsif untuk mobile */
+    flex: 0 0 350px; 
+    max-width: 85vw; 
     background: var(--white); border: 1px solid var(--sand-light);
     border-radius: 8px; overflow: hidden;
     transition: var(--transition-smooth);
     display: flex; flex-direction: column;
-    height: auto;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
   }
 
   .project-card:hover {
@@ -453,39 +504,70 @@
     content: '•'; position: absolute; left: 0; color: var(--terracotta); font-weight: bold;
   }
 
-  /* ACHIEVEMENTS */
-  .achievements-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;
+  /* DETAILED ACHIEVEMENTS LIST (CV Style) */
+  .achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 900px;
   }
+  
   .achievement-item {
     background: var(--white); border: 1px solid var(--sand-light);
-    border-radius: 8px; padding: 1.8rem;
-    display: flex; align-items: flex-start; gap: 1.2rem;
+    border-radius: 8px; padding: 2rem;
+    display: flex; align-items: flex-start; gap: 1.5rem;
     transition: var(--transition-smooth);
+    border-left: 4px solid var(--terracotta-light);
   }
+  
+  .achievement-item:nth-child(even) { border-left-color: var(--olive); }
+  
   .achievement-item:hover { 
-    transform: translateY(-5px); 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transform: translateX(8px); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
     border-color: var(--sand);
   }
+  
   .achievement-medal {
-    font-size: 1.8rem; flex-shrink: 0; line-height: 1; color: var(--terracotta);
-    background: var(--cream); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px;
+    font-size: 2.2rem; flex-shrink: 0; line-height: 1;
+    width: 60px; height: 60px;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
   }
-  .achievement-year {
-    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--terracotta); margin-bottom: 0.5rem; font-weight: 600;
+  
+  .achievement-content { flex: 1; }
+  
+  .achievement-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap; gap: 0.5rem;
   }
+
   .achievement-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem; font-weight: 600; color: var(--brown); line-height: 1.4;
+    font-size: 1.4rem; font-weight: 600; color: var(--brown); line-height: 1.3;
   }
+  
+  .achievement-year {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 600;
+    background: var(--cream); padding: 0.3rem 0.8rem; border-radius: 4px;
+    border: 1px solid var(--sand-light);
+  }
+  
   .achievement-org {
-    font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.95rem; color: var(--brown-mid); font-weight: 500;
+    display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;
+  }
+  
+  .achievement-desc {
+    font-size: 0.95rem; color: var(--muted); line-height: 1.7;
   }
 
   /* PUBLICATIONS */
-  .pub-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 850px; }
+  .pub-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 900px; }
   .pub-item {
     background: var(--cream); border: 1px solid var(--sand-light);
     border-left: 5px solid var(--terracotta);
@@ -615,33 +697,30 @@
     letter-spacing: 0.05em;
   }
 
-  /* ANIMATION DELAYS UNTUK HERO */
-  .hero-text > * { animation: fadeUpOnLoad 0.8s ease both; }
-  @keyframes fadeUpOnLoad {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .hero-welcome { animation-delay: 0.1s; }
-  .hero-eyebrow { animation-delay: 0.2s; }
-  h1.hero-name { animation-delay: 0.4s; }
-  .hero-tagline { animation-delay: 0.6s; }
-  .hero-cta { animation-delay: 0.8s; }
-
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
     .contact-links { grid-template-columns: 1fr; }
     .nav-links { display: none; }
-    section { padding: 5rem 1.5rem; }
-    .project-card { flex: 0 0 300px; } /* sedikit lebih kecil di mobile */
+    .scroll-section { padding: 5rem 1.5rem; }
+    
+    .achievement-item { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+    .achievement-medal { width: 50px; height: 50px; font-size: 1.8rem; }
+    
+    .section-nav-widget { right: 1rem; bottom: 1.5rem; }
+    .nav-btn { width: 40px; height: 40px; font-size: 1rem; }
   }
 </style>
 </head>
 <body>
 
+<div class="section-nav-widget" id="sectionNavigator">
+  <button class="nav-btn" id="navUp" title="Previous Section"><i class="fa-solid fa-chevron-up"></i></button>
+  <button class="nav-btn" id="navDown" title="Next Section"><i class="fa-solid fa-chevron-down"></i></button>
+</div>
+
 <nav id="navbar">
-  <a href="#" class="nav-logo">Clara Matondang</a>
+  <a href="#home" class="nav-logo">Clara Matondang</a>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -652,7 +731,7 @@
   </ul>
 </nav>
 
-<section id="home" style="padding: 0;">
+<section id="home" class="scroll-section" style="padding: 0;">
   <div class="hero">
     <div class="hero-text">
       <div class="hero-welcome">
@@ -675,7 +754,7 @@
   </div>
 </section>
 
-<section id="skills">
+<section id="skills" class="scroll-section">
   <div class="section-inner fade-up">
     <div class="section-label">
       <i class="fa-solid fa-screwdriver-wrench"></i> What I bring
@@ -721,7 +800,7 @@
   </div>
 </section>
 
-<section id="projects">
+<section id="projects" class="scroll-section">
   <div class="section-inner fade-up">
     <div class="section-label">
       <i class="fa-solid fa-briefcase"></i> Work showcase
@@ -729,11 +808,12 @@
     <h2 class="section-title">Selected <em>Projects</em></h2>
 
     <div class="projects-container">
-      <div class="scroll-hint">
-        <i class="fa-solid fa-arrows-left-right"></i> Scroll to explore more
-      </div>
       
-      <div class="projects-grid">
+      <button class="slider-btn left" id="slideLeft" title="Scroll Left"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="slider-btn right" id="slideRight" title="Scroll Right"><i class="fa-solid fa-chevron-right"></i></button>
+
+      <div class="projects-grid" id="projectsSlider">
+        
         <div class="project-card">
           <div class="project-header oil-gas">
             <span class="project-number">01</span>
@@ -803,12 +883,13 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<section id="experience">
+<section id="experience" class="scroll-section">
   <div class="section-inner fade-up">
     <div class="section-label">
       <i class="fa-solid fa-route"></i> Career path
@@ -861,67 +942,92 @@
   </div>
 </section>
 
-<section id="achievements">
+<section id="achievements" class="scroll-section">
   <div class="section-inner fade-up">
     <div class="section-label">
       <i class="fa-solid fa-trophy"></i> Recognition
     </div>
     <h2 class="section-title">Awards &amp; <em>Achievements</em></h2>
 
-    <div class="achievements-grid">
+    <div class="achievements-list">
+      
       <div class="achievement-item">
         <div class="achievement-medal"><i class="fa-solid fa-medal" style="color: #A6A6A6;"></i></div>
-        <div>
-          <div class="achievement-year">Dec 2025</div>
-          <div class="achievement-title">1st Runner Up — Derrick Geothermal Case Competition</div>
-          <div class="achievement-org"><i class="fa-regular fa-building"></i> Derrick</div>
+        <div class="achievement-content">
+          <div class="achievement-header">
+            <h3 class="achievement-title">1st Runner Up — Derrick Geothermal Case Competition</h3>
+            <span class="achievement-year">Dec 2025</span>
+          </div>
+          <div class="achievement-org"><i class="fa-regular fa-building"></i> Derrick Competition</div>
+          <div class="achievement-desc">Demonstrated strong analytical problem-solving by proposing a comprehensive and optimized geothermal development strategy against national-level engineering teams.</div>
         </div>
       </div>
+
       <div class="achievement-item">
-        <div class="achievement-medal"><i class="fa-solid fa-medal" style="color: #FFD700;"></i></div>
-        <div>
-          <div class="achievement-year">Nov 2025</div>
-          <div class="achievement-title">Gold Medal — National Heroes Competition</div>
+        <div class="achievement-medal"><i class="fa-solid fa-award" style="color: #FFD700;"></i></div>
+        <div class="achievement-content">
+          <div class="achievement-header">
+            <h3 class="achievement-title">Gold Medal — National Heroes Competition</h3>
+            <span class="achievement-year">Nov 2025</span>
+          </div>
           <div class="achievement-org"><i class="fa-solid fa-flag"></i> National Level</div>
+          <div class="achievement-desc">Awarded gold medal for excellence in a rigorous national competition, showcasing deep understanding of core scientific methodologies and critical thinking.</div>
         </div>
       </div>
+
       <div class="achievement-item">
-        <div class="achievement-medal"><i class="fa-solid fa-medal" style="color: #FFD700;"></i></div>
-        <div>
-          <div class="achievement-year">May 2025</div>
-          <div class="achievement-title">Gold Medal — Alberta Competition, Physics</div>
-          <div class="achievement-org"><i class="fa-solid fa-building-columns"></i> University Level</div>
+        <div class="achievement-medal"><i class="fa-solid fa-award" style="color: #FFD700;"></i></div>
+        <div class="achievement-content">
+          <div class="achievement-header">
+            <h3 class="achievement-title">Gold Medal — Alberta Competition, Physics</h3>
+            <span class="achievement-year">May 2025</span>
+          </div>
+          <div class="achievement-org"><i class="fa-solid fa-atom"></i> University Level</div>
+          <div class="achievement-desc">Achieved top rank in the university-level physics olympiad, applying advanced mathematical and physical concepts directly related to geophysics fundamentals.</div>
         </div>
       </div>
+
       <div class="achievement-item">
-        <div class="achievement-medal"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div>
-          <div class="achievement-year">Oct 2024</div>
-          <div class="achievement-title">Awardee — Beasiswa Unggulan Semester (BUS)</div>
+        <div class="achievement-medal"><i class="fa-solid fa-graduation-cap" style="color: var(--terracotta);"></i></div>
+        <div class="achievement-content">
+          <div class="achievement-header">
+            <h3 class="achievement-title">Awardee — Beasiswa Unggulan Semester (BUS)</h3>
+            <span class="achievement-year">Oct 2024</span>
+          </div>
           <div class="achievement-org"><i class="fa-solid fa-building-columns"></i> Universitas Pertamina</div>
+          <div class="achievement-desc">Granted full scholarship recognition based on outstanding academic performance and active contribution to the campus community and organizations.</div>
         </div>
       </div>
+
       <div class="achievement-item">
         <div class="achievement-medal"><i class="fa-solid fa-seedling" style="color: #4CAF50;"></i></div>
-        <div>
-          <div class="achievement-year">Jan 2024</div>
-          <div class="achievement-title">Awardee — Sobat Bumi Scholarship</div>
+        <div class="achievement-content">
+          <div class="achievement-header">
+            <h3 class="achievement-title">Awardee — Sobat Bumi Scholarship</h3>
+            <span class="achievement-year">Jan 2024</span>
+          </div>
           <div class="achievement-org"><i class="fa-regular fa-building"></i> Pertamina Foundation</div>
+          <div class="achievement-desc">Selected for a prestigious national scholarship focused on leadership, academic excellence, and commitment to environmental sustainability (Sobat Bumi).</div>
         </div>
       </div>
+
       <div class="achievement-item">
-        <div class="achievement-medal"><i class="fa-solid fa-file-lines"></i></div>
-        <div>
-          <div class="achievement-year">Sep 2024</div>
-          <div class="achievement-title">Paper Presenter — Annual Scientific Meeting 2024</div>
-          <div class="achievement-org"><i class="fa-solid fa-users-rectangle"></i> HAGI</div>
+        <div class="achievement-medal"><i class="fa-solid fa-file-lines" style="color: var(--brown-mid);"></i></div>
+        <div class="achievement-content">
+          <div class="achievement-header">
+            <h3 class="achievement-title">Paper Presenter — Annual Scientific Meeting</h3>
+            <span class="achievement-year">Sep 2024</span>
+          </div>
+          <div class="achievement-org"><i class="fa-solid fa-users-rectangle"></i> HAGI (Himpunan Ahli Geofisika Indonesia)</div>
+          <div class="achievement-desc">Successfully defended and presented academic research on soil vulnerability using the HVSR method in front of professional geophysicists and industry experts.</div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<section id="publications">
+<section id="publications" class="scroll-section">
   <div class="section-inner fade-up">
     <div class="section-label">
       <i class="fa-solid fa-book-open"></i> Research output
@@ -941,7 +1047,7 @@
   </div>
 </section>
 
-<section id="education">
+<section id="education" class="scroll-section">
   <div class="section-inner fade-up">
     <div class="section-label">
       <i class="fa-solid fa-user-graduate"></i> Academic background
@@ -974,7 +1080,7 @@
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="scroll-section">
   <div class="section-inner fade-up">
     <div class="section-label">
       <i class="fa-regular fa-paper-plane"></i> Get in touch
@@ -1048,7 +1154,8 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // Nav bar shadow on scroll
+    
+    /* 1. Navbar Shadow on Scroll */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -1060,13 +1167,8 @@
       }
     });
 
-    // Intersection Observer untuk Fade-Up Animation
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-
+    /* 2. Fade Up Animations */
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1077,9 +1179,64 @@
     }, observerOptions);
 
     const fadeElements = document.querySelectorAll('.fade-up');
-    fadeElements.forEach(el => {
-      observer.observe(el);
+    fadeElements.forEach(el => observer.observe(el));
+
+    /* 3. Horizontal Slider untuk Projects */
+    const slider = document.getElementById('projectsSlider');
+    const btnLeft = document.getElementById('slideLeft');
+    const btnRight = document.getElementById('slideRight');
+
+    // Geser ukuran 1 kartu + gap (350px + 32px)
+    const scrollAmount = 382; 
+
+    btnLeft.addEventListener('click', () => {
+      slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
+
+    btnRight.addEventListener('click', () => {
+      slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    /* 4. Global Section Navigator (Atas/Bawah) */
+    const sections = Array.from(document.querySelectorAll('.scroll-section'));
+    const navWidget = document.getElementById('sectionNavigator');
+    const btnUp = document.getElementById('navUp');
+    const btnDown = document.getElementById('navDown');
+    
+    let currentSectionIndex = 0;
+
+    // Track posisi section saat di-scroll
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          currentSectionIndex = sections.indexOf(entry.target);
+          
+          // Munculkan widget jika sudah melewati Hero (index 0)
+          if (currentSectionIndex > 0) {
+            navWidget.classList.add('visible');
+          } else {
+            navWidget.classList.remove('visible');
+          }
+        }
+      });
+    }, { threshold: 0.3 }); // Memicu pergantian index saat bagian tengah section terlihat
+
+    sections.forEach(sec => sectionObserver.observe(sec));
+
+    // Aksi Klik Panah Atas
+    btnUp.addEventListener('click', () => {
+      if (currentSectionIndex > 0) {
+        sections[currentSectionIndex - 1].scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Aksi Klik Panah Bawah
+    btnDown.addEventListener('click', () => {
+      if (currentSectionIndex < sections.length - 1) {
+        sections[currentSectionIndex + 1].scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
   });
 </script>
 
