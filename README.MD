@@ -78,6 +78,3 @@ Hi, I'm Clara\! I'm a final-year Geophysical Engineering student in Jakarta. I c
 
 [](https://www.linkedin.com/in/claramatondang/)
 [](https://github.com/claramtd)
-
-```
-```
